@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>News | Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/news.js"></script>
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+</head>
+
+<body onload="onLoad()">
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>News Dashboard</h3>
+                <strong>BS</strong>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="bi bi-diagram-3"></i>
+                        News
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="#"><i class="bi bi-list-stars"></i>List</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="add_modal()" ><i class="bi bi-plus-square"></i>Add News</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="bi bi-gear"></i>Setting</a>
+                        </li>
+                    </ul>
+                </li>
+                
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="category_dashboard.html" class="download"><i class="bi bi-newspaper"></i>Category Dashboard</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        
+
+            <nav class="navbar navbar-expand-lg fixed-top justify-content-end" >
+                <div class="avatar">
+                    <a class="navbar-brand" >
+                        <img src="./assets/img/news.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill"> 
+                        <span>Thành Đạt</span>
+                        
+                    </a>
+                    
+                    <i class="fas fa-angle-down hand" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+
+                    <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#">Hồ sơ</a>
+                      <a class="dropdown-item" href="#">Cài đặt</a>
+                      <a class="dropdown-item" href="#">Thoát</a>
+                    </div>
+                  </div>
+                    
+            </nav>
+
+            <div class="container page-content ">
+
+                <div class="card shadow-lg rounded">
+                    <div class="card-header border-bottom ">
+                        
+                        <div class="row">
+                            <div class="col-md-6 text-left">
+                                <h2 class="mb-0">News Categories</h5>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <span type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
+                                    Add News
+                                </span>
+                            </div>
+                            
+                        </div>
+    
+                        
+                            
+                    </div>
+                    
+                <!-- Button trigger modal -->
+                    
+                    
+                    <!-- Modal Add-->
+                    <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title justify-content-center" id="exampleModalLongTitle">Add News Form</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <label>Name:</label>
+                                <input class="form-control" id="name" name="name" value="">
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" onclick="saveData()">Confirm</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Edit-->
+                    <div class="modal fade " id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title justify-content-center" id="exampleModalLongTitle">Edit News Form</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <label>ID:</label>
+                                <input class="form-control" id="id_update" value="" readonly>
+                                <label>Name:</label>
+                                <input class="form-control" id="name_update" value="">
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" onclick="updateData()">Confirm</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+
+                    <div class="table-responsive text-center ">
+                        <table class="table table-hover table-nowrap">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Title</th>
+                                    <th  scope="col">Content</th>
+                                    <th  scope="col">Image</th>
+                                    <th  scope="col">Date Modified</th>
+                                    <th  scope="col">Category</th>
+                                    <th  scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="row-sent">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+
+</body>
+
+</html>
