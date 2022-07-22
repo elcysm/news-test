@@ -2,24 +2,84 @@ var mytable =  "";
 
 function onLoad(){
     
+    const news=JSON.parse(localStorage.getItem('news'));
 
-    const obj=JSON.parse(localStorage.getItem('category'));
-
-    for (let i=0; i< obj.length; i++){
+    for (let i=0; i< news.length; i++){
         mytable +=  "<tr>";
-        mytable +=  "<td>"+ obj[i].id + "</td>";
-        mytable +=  "<td><a class=\"text-heading font-semibold\" id=\"" + obj[i].id + "\" href=\"#\">"+ obj[i].name + "</a> </td>";
-        mytable +=  "<td>" + obj[i].date + "</td>";
-        mytable +=  "<td>"+ obj[i].user + "</td>";
-        mytable +=  "<td> <a href=\"#\" data-id=\"" + obj[i].id + "\"onclick=\"edit_modal(this)\"> <button class=\"btn btn-sm\"> <i class=\"bi bi-pencil-square\"></i></button></a><a data-id=\"" + obj[i].id + "\"onclick=\"deleteData(this);\" href=\"#\"> <button type=\"button\" class=\"btn btn-sm btn-square btn-neutral text-danger-hover\"><i class=\"bi bi-trash\"></i></button></a> </td>";
+        mytable +=  "<td>"+ news[i].id + "</td>";
+        mytable +=  "<td><a class=\"text-heading font-semibold\" id=\"" + news[i].id + "\" href=\"#\">"+ news[i].title + "</a> </td>";
+        mytable +=  "<td> <textarea cols=\"30\" rows=\"1\">" + news[i].content + "</textarea></td>";
+        mytable +=  "<td> <img src=\""+ news[i].image + "\"></td>";
+        mytable +=  "<td>" + news[i].date + "</td>";
+        mytable +=  "<td> <span class=\"badge badge-success\">" + news[i].category + "</span></td>";
+        mytable +=  "<td> <a href=\"#\" data-id=\"" + news[i].id + "\"onclick=\"edit_modal(this)\"> <button class=\"btn btn-sm\"> <i class=\"bi bi-pencil-square\"></i></button></a><a data-id=\"" + category.id + "\"onclick=\"deleteData(this);\" href=\"#\"> <button type=\"button\" class=\"btn btn-sm btn-square btn-neutral text-danger-hover\"><i class=\"bi bi-trash\"></i></button></a> </td>";
         mytable +=  "</tr>";
     }
     document.getElementById("row-sent").innerHTML = mytable;
 }
 
+// function getFilePath(){
+//     $('input[type=file]').change(function () {
+//         alert(this.files[0].mozFullPath);
+//     });
+// }
+function saveData(){
+
+    if (document.getElementById('title').value == ''){
+        alert("Please fill all the black!");
+    }
+    else{
+
+        const new_ ={
+            'id': 'ID'+ Math.floor(Math.random() * 100).toString(),
+            'title': document.getElementById('title').value,
+            'content': document.getElementById('content').value,
+            'image': './assets/img/favicon.png',
+            'date': new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }),
+            'category': document.getElementById('category').value,
+        };
+
+
+
+        let news = JSON.parse(localStorage.getItem("news"));
+
+        if(news===null){
+            news = [];
+            news.push(new_);
+            const setjson = JSON.stringify(news);
+            localStorage.setItem('news', setjson);   
+        }
+        else{
+            news.push(new_);
+            const setjson = JSON.stringify(news);
+            localStorage.setItem('news', setjson);   
+        }
+        
+        alert("Successfully");
+        $('#addModal').modal('hide');
+        $("#addModal").on("hidden.bs.modal", function(){
+            $(".modal-body").html("");
+        });
+
+
+        mytable +=  "<tr>";
+        mytable +=  "<td>"+ new_.id + "</td>";
+        mytable +=  "<td><a class=\"text-heading font-semibold\" id=\"" + new_.id + "\" href=\"#\">"+ new_.title + "</a> </td>";
+        mytable +=  "<td> <textarea cols=\"30\" rows=\"1\">" + new_.content + "</textarea></td>";
+        mytable +=  "<td> <img src=\""+ new_.image + "\"></td>";
+        mytable +=  "<td>" + new_.date + "</td>";
+        mytable +=  "<td> <span class=\"badge badge-success\">" + new_.category + "</span></td>";
+        mytable +=  "<td> <a href=\"#\" data-id=\"" + new_.id + "\"onclick=\"edit_modal(this)\"> <button class=\"btn btn-sm\"> <i class=\"bi bi-pencil-square\"></i></button></a><a data-id=\"" + category.id + "\"onclick=\"deleteData(this);\" href=\"#\"> <button type=\"button\" class=\"btn btn-sm btn-square btn-neutral text-danger-hover\"><i class=\"bi bi-trash\"></i></button></a> </td>";
+        mytable +=  "</tr>";
+
+        document.getElementById("row-sent").innerHTML = mytable;
+    }
+    
+}
+
 function updateData(){
 
-    let categories = JSON.parse(localStorage.getItem("category"));
+    let news = JSON.parse(localStorage.getItem("news"));
     var current_id = document.getElementById('id_update').value;
     var new_name = document.getElementById('name_update').value;
     
@@ -79,56 +139,11 @@ function deleteData(btndel){
 
 }
 
-function saveData(){
 
-    if (document.getElementById('name').value == ''){
-        alert("Please fill the name!");
-    }
-    else{
-
-        const category ={
-            'id': 'ID'+ Math.floor(Math.random() * 100).toString(),
-            'name': document.getElementById('name').value,
-            'date': new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }),
-            'user': 'Thành Đạt',
-        };
-
-
-        let categories = JSON.parse(localStorage.getItem("category"));
-
-        if(categories===null){
-            categories = [];
-            categories.push(category);
-            const setjson = JSON.stringify(categories);
-            localStorage.setItem('category', setjson);   
-        }
-        else{
-            categories.push(category);
-            const setjson = JSON.stringify(categories);
-            localStorage.setItem('category', setjson);   
-        }
-        
-        alert("Successfully");
-        $('#exampleModalCenter').modal('hide');
-        document.getElementById('name').value = "";
-
-
-        mytable +=  "<tr>";
-        mytable +=  "<td>"+ category.id + "</td>";
-        mytable +=  "<td><a class=\"text-heading font-semibold\" id=\"" + category.id + "\" href=\"#\">"+ category.name + "</a> </td>";
-        mytable +=  "<td>" + category.date + "</td>";
-        mytable +=  "<td>"+ category.user + "</td>";
-        mytable +=  "<td> <a href=\"#\" data-id=\"" + category.id + "\"onclick=\"edit_modal(this)\"> <button class=\"btn btn-sm\"> <i class=\"bi bi-pencil-square\"></i></button></a><a data-id=\"" + category.id + "\"onclick=\"deleteData(this);\" href=\"#\"> <button type=\"button\" class=\"btn btn-sm btn-square btn-neutral text-danger-hover\"><i class=\"bi bi-trash\"></i></button></a> </td>";
-        mytable +=  "</tr>";
-
-        document.getElementById("row-sent").innerHTML = mytable;
-    }
-    
-}
 
 
 function add_modal(){
-    $('#exampleModalCenter').modal('toggle');
+    $('#addModal').modal('toggle');
 }
 
 

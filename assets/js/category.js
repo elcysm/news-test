@@ -109,7 +109,7 @@ function saveData(){
         }
         
         alert("Successfully");
-        $('#exampleModalCenter').modal('hide');
+        $('#addModal').modal('hide');
         document.getElementById('name').value = "";
 
 
@@ -128,7 +128,7 @@ function saveData(){
 
 
 function add_modal(){
-    $('#exampleModalCenter').modal('toggle');
+    $('#addModal').modal('toggle');
 }
 
 
