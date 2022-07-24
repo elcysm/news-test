@@ -117,7 +117,6 @@ span {
 }
 #sidebar a i{
     position: relative;
-    /* Adjust these values accordingly */
     top: -3px;
 }
 
@@ -186,7 +185,6 @@ a[aria-expanded="true"] {
     color: #fff;
     background-color: #0093E9;
     background-image: linear-gradient(90deg, #0093E9 0%, #80D0C7 100%);
-
 }
 
 a[data-toggle="collapse"] {
@@ -241,6 +239,38 @@ ul.CTAs a {
 .table{
     margin-bottom: 0;
 }
+.modal-body label{
+    margin-bottom: 7px;
+    margin-top: 10px;
+}
+
+#img-display{
+    width: 32px;
+    height: 32px;
+}
+
+#img-display:focus{
+    width: 500px;
+    height: 500px;
+}
+#content-news{
+    text-overflow: ellipsis;
+    display: inline-block;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.content-news{
+    position: relative;
+    top: -10px;
+}
+
+.content-news:hover{
+    color:#0093E9;
+    cursor: pointer;
+}
+
 
 /* ---------------------------------------------------
     MEDIAQUERIES
