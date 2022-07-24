@@ -63,7 +63,7 @@ function saveData(){
         mytable +=  "<tr>";
         mytable +=  "<td>"+ new_.id + "</td>";
         mytable +=  "<td> <a class=\"" + new_.id + "\" href=\"#\">"+ new_.title + "</a> </td>";
-        mytable +=  "<td> <a id=\"content-news\" class=\"" + new_.id + "\" readonly>" + new_.content + "</a><a><i class=\"content-news bi bi-eye-fill\"></i></a></td>";
+        mytable +=  "<td> <a id=\"content-news\" class=\"" + new_.id + "\" readonly>" + new_.content + "</a><a><i class=\"content-news bi bi-eye-fill\" data-id=\"" + new_.id + "\" onclick=\"watch_content(this)\"></i></a></td>";
         mytable +=  "<td> <img id=\"img-display\" class=\"" + new_.id + "\" src=\""+ new_.image + "\"></td>";
         mytable +=  "<td class=\"" + new_.id + "\">" + new_.date + "</td>";
         mytable +=  "<td> <span class=\"badge badge-success " + new_.id + "\">" + new_.category + "</span></td>";
